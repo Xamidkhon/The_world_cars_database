@@ -1,0 +1,45 @@
+#quick start:
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+cars = pd.read_csv('D:\car_data\woldcars_data.csv')
+cars.head(50)
+plt.plot(cars["model_name"], 'y')
+plt.xlabel('price')
+plt.ylabel('year')
+plt.title('The world most popular cars price in 2022-2019')
+plt.show()
+
+#Groupby:
+cars.groupby('model_name').year.mean()
+# Pie chart, statics of cars :
+labels = 'S_Class','BMW X7','Audi A5', 'Mercedes-AMG G63'
+sizes = [65, 30, 5, 10]
+explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Mercedes-AMG G63')
+
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=95)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title('woldcars data 2022-2019')
+plt.show()  
+
+#statics of sold cars in the world by continet:
+year = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2018]
+woldcars_data_by_continent = {
+    'africa': [228, 284, 365, 477, 631, 814, 1044, 1275],
+    'americas': [340, 425, 519, 619, 727, 840, 943, 1006],
+    'asia': [1394, 1686, 2120, 2625, 3202, 3714, 4169, 4560],
+    'europe': [220, 253, 276, 295, 310, 303, 294, 293],
+    'oceania': [12, 15, 19, 22, 26, 31, 36, 39],
+}
+
+fig, ax = plt.subplots()
+ax.stackplot(year, woldcars_data_by_continent.values(),
+             labels=woldcars_data_by_continent.keys(), alpha=0.8)
+ax.legend(loc='upper left')
+ax.set_title('woldcars data 1950-2022')
+ax.set_xlabel('Year')
+ax.set_ylabel('Number of sold cars (millions)')
+
+plt.show()
