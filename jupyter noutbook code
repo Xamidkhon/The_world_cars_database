@@ -2,16 +2,21 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+read csv#
 cars = pd.read_csv('D:\car_data\woldcars_data.csv')
+
+#Groupby:
 cars.head(50)
+#graphic
 plt.plot(cars["model_name"], 'y')
 plt.xlabel('price')
 plt.ylabel('year')
-plt.title('The world most popular cars price in 2022-2019')
+plt.title('The world most popular cars price in 2019-2022')
 plt.show()
 
 #Groupby:
 cars.groupby('model_name').year.mean()
+
 # Pie chart, statics of cars :
 labels = 'S_Class','BMW X7','Audi A5', 'Mercedes-AMG G63'
 sizes = [65, 30, 5, 10]
@@ -41,5 +46,49 @@ ax.legend(loc='upper left')
 ax.set_title('woldcars data 1950-2022')
 ax.set_xlabel('Year')
 ax.set_ylabel('Number of sold cars (millions)')
+
+plt.show()
+
+#statics of luxry carsin the world:
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+
+
+plt.rcdefaults()
+fig, ax = plt.subplots()
+
+# Example data
+cars = ('Bugatti Chiron', 'Bugatti Veyron', 'Lamborghini Countach', 'Ferrari SF90 Spider', 'Bugatti Divo')
+y_pos = np.arange(len(cars))
+performance = 1 + 500 * np.random.rand(len(cars))
+error = np.random.rand(len(cars))
+
+ax.barh(y_pos, performance, xerr=error, align='center', color=['black', 'red', 'green', 'blue', 'cyan'])
+
+ax.set_yticks(y_pos, labels=cars)
+ax.invert_yaxis()  # labels read top-to-bottom
+ax.set_xlabel('speed')
+ax.set_title('How fast?')
+
+plt.show()
+
+#bar
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+cars = ['Bugatti Chiron', 'Bugatti Veyron', 'Bugatti Divo', 'Lamborghini Countach']
+counts = [500, 100, 40, 112]
+bar_labels = ['red', 'blue', '_red', 'orange']
+bar_colors = ['tab:red', 'tab:blue', 'tab:red', 'tab:orange']
+
+ax.bar(cars, counts, label=bar_labels, color=bar_colors)
+
+ax.set_ylabel('bugatti of number')
+ax.set_title('how many bugattis are in the world')
+ax.legend(title='cars supply by kind and color')
 
 plt.show()
