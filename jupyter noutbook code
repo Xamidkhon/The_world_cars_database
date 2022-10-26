@@ -2,9 +2,12 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-read csv#
+#cover
+from PIL import Image
+img =Image.open('worldcarscover')
+img
+#read csv:
 cars = pd.read_csv('D:\car_data\woldcars_data.csv')
-
 #Groupby:
 cars.head(50)
 #graphic
