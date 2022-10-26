@@ -2,37 +2,42 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#cover
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+#image for cover:
 from PIL import Image
 img =Image.open('worldcarscover')
 img
-#read csv:
-cars = pd.read_csv('D:\car_data\woldcars_data.csv')
-#Groupby:
-cars.head(50)
+
+#gruopby:
+cars.head(60)
+
 #graphic
 plt.plot(cars["model_name"], 'y')
 plt.xlabel('price')
-plt.ylabel('year')
-plt.title('The world most popular cars price in '2019-2022')
+plt.ylabel("name")
+plt.title('The world most popular cars price in 2019-2022')
 plt.show()
 
-#Groupby:
-cars.groupby('model_name').year.mean()
+#image for pie chart
+from PIL import Image
+img =Image.open('models')
+img
 
-# Pie chart, statics of cars:
+# Pie chart, statics of cars :
 labels = 'S_Class','BMW X7','Audi A5', 'Mercedes-AMG G63'
-sizes = [65, 30, 5, 10]
+sizes = [50, 30, 5, 12]
 explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Mercedes-AMG G63')
 
 fig1, ax1 = plt.subplots()
 ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=95)
 ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-plt.title('woldcars data 2022-2019')
-plt.show()  
+plt.title('The Wolrd most popular models 2019-2022')
+plt.show()
 
-#statics of sold cars in the world by continet:
+#statics of sold cars:
 year = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2018]
 woldcars_data_by_continent = {
     'africa': [228, 284, 365, 477, 631, 814, 1044, 1275],
@@ -52,7 +57,73 @@ ax.set_ylabel('Number of sold cars (millions)')
 
 plt.show()
 
-#statics of luxry carsin the world:
+#image for world luxury cars:
+from PIL import Image
+img =Image.open('luxury cars')
+img
+#world luxury cars
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+category_names = ['Bugatti Chiron', 'Bugatti Divo',
+                  'Ferrari SF90 Spider', 'Lamborghini Countach', 'Bugatti Veyron']
+results = {
+    'Germany': [10, 15, 17, 32, 26],
+    'Italy': [26, 22, 29, 10, 13],
+    'UAA': [35, 37, 7, 2, 19],
+    'USA': [32, 11, 9, 15, 33],
+    'France': [21, 29, 5, 5, 40],
+    'India': [8, 19, 5, 30, 38]
+}
+
+
+def survey(results, category_names):
+    """
+    Parameters
+    ----------
+    results : dict
+        A mapping from Garage labels to a list of answers per category.
+        It is assumed all lists contain the same number of entries and that
+        it matches the length of *category_names*.
+    category_names : list of str
+        The category labels.
+    """
+    labels = list(results.keys())
+    data = np.array(list(results.values()))
+    data_cum = data.cumsum(axis=1)
+    category_colors = plt.colormaps['RdYlGn'](
+        np.linspace(0.15, 0.85, data.shape[1]))
+
+    fig, ax = plt.subplots(figsize=(9.2, 5))
+    ax.invert_yaxis()
+    ax.xaxis.set_visible(False)
+    ax.set_xlim(0, np.sum(data, axis=1).max())
+
+    for i, (colname, color) in enumerate(zip(category_names, category_colors)):
+        widths = data[:, i]
+        starts = data_cum[:, i] - widths
+        rects = ax.barh(labels, widths, left=starts, height=0.5,
+                        label=colname, color=color)
+
+        r, g, b, _ = color
+        text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
+        ax.bar_label(rects, label_type='center', color=text_color)
+    ax.legend(ncol=len(category_names), bbox_to_anchor=(0, 1),
+              loc='lower left', fontsize='small')
+
+    return fig, ax
+
+
+survey(results, category_names)
+plt.show()
+
+#image for graphic
+from PIL import Image
+img =Image.open('speed')
+img
+
+#how fast horizontal bar chart:
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -78,12 +149,17 @@ ax.set_title('How fast?')
 
 plt.show()
 
-#bar:
+#image for bar:
+from PIL import Image
+img =Image.open('b')
+img
+
+#bar statics of buggati's:
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots()
 
-cars = ['Bugatti Chiron', 'Bugatti Veyron', 'Bugatti Divo', 'Lamborghini Countach']
+cars = ['Bugatti Chiron', 'Bugatti Veyron', 'Bugatti Divo    ','Lamborghini Countach']
 counts = [500, 100, 40, 112]
 bar_labels = ['red', 'blue', '_red', 'orange']
 bar_colors = ['tab:red', 'tab:blue', 'tab:red', 'tab:orange']
