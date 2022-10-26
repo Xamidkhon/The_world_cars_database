@@ -11,13 +11,13 @@ cars.head(50)
 plt.plot(cars["model_name"], 'y')
 plt.xlabel('price')
 plt.ylabel('year')
-plt.title('The world most popular cars price in 2019-2022')
+plt.title('The world most popular cars price in '2019-2022')
 plt.show()
 
 #Groupby:
 cars.groupby('model_name').year.mean()
 
-# Pie chart, statics of cars :
+# Pie chart, statics of cars:
 labels = 'S_Class','BMW X7','Audi A5', 'Mercedes-AMG G63'
 sizes = [65, 30, 5, 10]
 explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Mercedes-AMG G63')
@@ -75,7 +75,7 @@ ax.set_title('How fast?')
 
 plt.show()
 
-#bar
+#bar:
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots()
