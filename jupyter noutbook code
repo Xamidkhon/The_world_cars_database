@@ -51,7 +51,7 @@ fig, ax = plt.subplots()
 ax.stackplot(year, woldcars_data_by_continent.values(),
              labels=woldcars_data_by_continent.keys(), alpha=0.8)
 ax.legend(loc='upper left')
-ax.set_title('woldcars data 1950-2022')
+ax.set_title('woldcars data 1950-2018')
 ax.set_xlabel('Year')
 ax.set_ylabel('Number of sold cars (millions)')
 
